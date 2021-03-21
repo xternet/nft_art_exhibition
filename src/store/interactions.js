@@ -119,7 +119,7 @@ export const loadNftState = async (dispatch, contract) => {
     const tab = []
     const totalSupply = await contract.methods.totalSupply().call()
 
-    for(let i=0; i<totalSupply; i++){
+    for(let i=1; i<=totalSupply; i++){
       const state = await contract.methods.sold(i).call()
       if(state){
         tab.push(await contract.methods.ownerOf(i).call()) //if sold, then add owner address
