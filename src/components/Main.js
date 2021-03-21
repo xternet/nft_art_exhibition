@@ -11,6 +11,7 @@ import {
   networkSelector
 } from '../store/selectors'
 
+
 class Main extends Component {
   render() {
     try{
@@ -55,11 +56,10 @@ class Main extends Component {
               <main role="main" className="col-lg-12 d-flex text-center">
                 <div className="content mr-auto ml-auto">
                   <div className="row justify-content-around" style={{ width: '1000px', fontSize: '13px'}}>
-
                   {this.props.metadata.map((nft, key) => {
                     return(
                       <div className="p-3" key={key}>
-                      {this.props.nftState[nft.id]
+                      {this.props.nftState[nft.id-1]
                         ? <a href={nft.image} target="_blank" rel="noopener noreferrer">
                             <img src={`data:image/png;base64,${nft.img}`} style={{ border: '1mm ridge #8B8B8B', width: '200px', height: '300px' }} alt="art"/>
                           </a>
@@ -86,7 +86,7 @@ class Main extends Component {
                                 </a>
                               </td>
                             </tr>
-                            {this.props.nftState[nft.id]
+                            {this.props.nftState[nft.id-1]
                             ? <tr>
                                 <th className="text-left" style={{color: "#8B8B8B"}}>Owner:</th>
                                 <th>
@@ -95,15 +95,15 @@ class Main extends Component {
                                     className="ml-2 id border border-success"
                                     width="15"
                                     height="15"
-                                    src={`data:image/png;base64,${new Identicon(this.props.nftState[nft.id], 30).toString()}`}
+                                    src={`data:image/png;base64,${new Identicon(this.props.nftState[nft.id-1], 30).toString()}`}
                                   />{' '}
                                   <a
-                                    href={`https://etherscan.io/address/` + this.props.nftState[nft.id]}
+                                    href={`https://etherscan.io/address/` + this.props.nftState[nft.id-1]}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     style={{color: "#55FF55", "fontWeight": "normal"}}
                                   >
-                                    {this.props.nftState[nft.id].substring(0,8) + '...'}
+                                    {this.props.nftState[nft.id-1].substring(0,8) + '...'}
                                   </a>
                                 </th>
                               </tr>
@@ -114,7 +114,7 @@ class Main extends Component {
                             }
                           </tbody>
                         </table><p></p>
-                          {this.props.nftState[nft.id]
+                          {this.props.nftState[nft.id-1]
                             ? <button
                                 type="Success"
                                 className="btn btn-block"
